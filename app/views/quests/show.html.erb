@@ -1,34 +1,97 @@
-<div class="container mt-3">
-    <h1><%= @quest.title %></h1>
-    <p><strong>Description:</strong> <%= @quest.description %></p>
-    <p><strong>Category:</strong> <%= @quest.category %></p>
-    <p><strong>Difficulty:</strong> <%= @quest.difficulty.capitalize %></p>
-    <p><strong>Time:</strong> <%= @quest.duration_minutes %> minutes</p>
+<main class="quest-show-page">
+  <nav class="quest-breadcrumb">
+    <%= link_to "← All quests", quests_path %>
+  </nav>
 
-    <%= link_to "Back to all quests", quests_path, class: "btn btn-primary" %>
-    <%= link_to "Delete this quest", quest_path(@quest), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger"  %>
-    <%= link_to "Edit this quest", edit_quest_path(@quest), class: "btn btn-info" %>
+  <section class="quest-detail-card">
+    <div class="quest-detail-main">
+      <div class="quest-badges">
+        <span class="quest-badge"><%= @quest.category %></span>
+        <span class="quest-badge difficulty-<%= @quest.difficulty %>">
+          <%= @quest.difficulty.capitalize %>
+        </span>
+      </div>
 
-    <h2>🌟 Quest Completion</h2>
+      <p class="quest-overline">DEVELOPER SIDE QUEST</p>
+      <h1><%= @quest.title %></h1>
+      <p class="quest-description"><%= @quest.description %></p>
 
-    <%= simple_form_for [@quest, Completion.new],
-                    url: quest_completions_path(@quest) do |f| %>
-      <%= f.input :rating, collection: 1..5, label: "🎯 How Challenging Was It?", prompt: "Choose a rating" %>
-      <%= f.input :note, label: "💡 What Did You Learn?" %>
-      <%= f.button :submit, "🏆 Claim Victory", class: "btn btn-success" %>
-    <% end %>
+      <div class="quest-time">
+        <span>◷</span>
+        <strong><%= @quest.duration_minutes %> minutes</strong>
+      </div>
 
-    <h2>⭐ Achievement History</h2>
+      <div class="quest-actions">
+        <%= link_to "Edit quest", edit_quest_path(@quest), class: "quest-button quest-button-secondary" %>
 
-    <% @quest.completions.order(completed_at: :desc).each do |completion| %>
-        <article>
-          <p>Completed: <%= completion.completed_at.strftime("%B %-d, %Y") %></p>
-          <% if completion.rating.present? %>
-            <p>Rating: <%= completion.rating %>/5</p>
-          <% end %>
-          <% if completion.note.present? %>
-            <p><%= completion.note.capitalize %></p>
-          <% end %>
-        </article>
-    <% end %>
-</div>
+        <%= button_to "Delete quest",
+                      quest_path(@quest),
+                      method: :delete,
+                      class: "quest-button quest-button-danger",
+                      form: { data: { turbo_confirm: "Delete this quest?" } } %>
+      </div>
+    </div>
+
+    <aside class="quest-detail-aside">
+      <span class="quest-aside-icon">✦</span>
+      <p class="quest-overline">THE MISSION</p>
+      <h2>Small mission.<br>Real progress.</h2>
+      <p>Take it one step at a time. When you finish, log what you learned.</p>
+    </aside>
+  </section>
+
+  <section class="completion-section">
+    <div class="completion-heading">
+      <p class="quest-overline">TRACK YOUR PROGRESS</p>
+      <h2>Quest completions</h2>
+    </div>
+
+    <div class="completion-grid">
+      <div class="completion-card">
+        <h3>📝Log a victory</h3>
+        <p class="completion-hint">What did you learn from this quest?</p>
+
+        <%= simple_form_for [@quest, Completion.new], html: { class: "completion-form" } do |f| %>
+          <%= f.input :rating,
+                      collection: 1..5,
+                      prompt: "Choose a rating",
+                      label: "🎯 How challenging was it?" %>
+
+          <%= f.input :note,
+                      label: "💡 What did you learn?",
+                      input_html: { rows: 4, placeholder: "Add a note about how it went..." } %>
+
+          <%= f.button :submit, "🏆 Claim victory", class: "quest-button quest-button-primary" %>
+        <% end %>
+      </div>
+
+      <div class="completion-card">
+        <h3>Achievement history</h3>
+
+        <% completions = @quest.completions.order(completed_at: :desc) %>
+
+        <% if completions.any? %>
+          <div class="completion-list">
+            <% completions.each do |completion| %>
+              <article class="completion-entry">
+                <p class="completion-date">
+                  <%= completion.completed_at&.strftime("%B %d, %Y") || "Date not recorded" %>
+                </p>
+
+                <% if completion.rating.present? %>
+                  <p class="completion-rating"><%= "★" * completion.rating %><%= "☆" * (5 - completion.rating) %></p>
+                <% end %>
+
+                <% if completion.note.present? %>
+                  <p class="completion-note"><%= completion.note %></p>
+                <% end %>
+              </article>
+            <% end %>
+          </div>
+        <% else %>
+          <p class="completion-empty">No completions yet. Your first one can go here.</p>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</main>

@@ -130,3 +130,260 @@ body {
     padding: 28px 22px;
   }
 }
+
+.quest-show-page {
+  width: 90%;
+  max-width: 1100px;
+  margin: 42px auto 80px;
+  color: #f4f6fb;
+}
+
+.quest-breadcrumb {
+  margin-bottom: 18px;
+}
+
+.quest-breadcrumb a {
+  color: #aab5ca;
+  text-decoration: none;
+}
+
+.quest-breadcrumb a:hover {
+  color: #a7f36b;
+}
+
+.quest-detail-card {
+  display: grid;
+  grid-template-columns: 1.4fr 0.6fr;
+  gap: 36px;
+  padding: 42px;
+  border: 1px solid #344052;
+  border-radius: 24px;
+  background: radial-gradient(ellipse at 80% 10%, #29385b, #171d2b 62%);
+}
+
+.quest-badges,
+.quest-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.quest-badge {
+  padding: 7px 12px;
+  border: 1px solid #46516a;
+  border-radius: 999px;
+  color: #d3dbeb;
+  font-size: 0.85rem;
+}
+
+.quest-overline {
+  margin: 24px 0 8px;
+  color: #a7f36b;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.quest-detail-main h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.08;
+}
+
+.quest-description {
+  max-width: 680px;
+  margin: 20px 0;
+  color: #bac4d6;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.quest-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0 26px;
+  color: #dce3ef;
+}
+
+.quest-detail-aside {
+  align-self: stretch;
+  padding: 26px;
+  border: 1px solid #46516a;
+  border-radius: 18px;
+  background: #202839;
+}
+
+.quest-aside-icon {
+  color: #a7f36b;
+  font-size: 2rem;
+}
+
+.quest-detail-aside .quest-overline {
+  margin-top: 18px;
+}
+
+.quest-detail-aside h2 {
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.quest-detail-aside p:last-child,
+.completion-hint,
+.completion-empty {
+  color: #aeb9cc;
+  line-height: 1.6;
+}
+
+.quest-button {
+  display: inline-block;
+  padding: 11px 16px;
+  border: 0;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.quest-button-secondary {
+  background: #303b50;
+  color: #f4f6fb;
+}
+
+.quest-button-danger {
+  background: #512d3a;
+  color: #ffb5bf;
+}
+
+.quest-button-primary {
+  background: #a7f36b;
+  color: #17200f;
+}
+
+.completion-section {
+  margin-top: 44px;
+}
+
+.completion-heading .quest-overline {
+  margin-top: 0;
+}
+
+.completion-heading h2 {
+  margin-top: 0;
+  font-size: 2rem;
+}
+
+.completion-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.completion-card {
+  padding: 26px;
+  border: 1px solid #30384a;
+  border-radius: 18px;
+  background: #191e2b;
+}
+
+.completion-card h3 {
+  margin-top: 0;
+  font-size: 1.35rem;
+}
+
+.completion-form label {
+  display: block;
+  margin: 16px 0 7px;
+  color: #dce3ef;
+}
+
+.completion-form input,
+.completion-form select,
+.completion-form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #46516a;
+  border-radius: 9px;
+  background: #111622;
+  color: #f4f6fb;
+}
+
+.completion-form input[type="submit"] {
+  width: auto;
+  margin-top: 14px;
+}
+
+.completion-entry {
+  padding: 16px 0;
+  border-top: 1px solid #30384a;
+}
+
+.completion-date {
+  color: #aeb9cc;
+  font-size: 0.9rem;
+}
+
+.completion-rating {
+  color: #ffd166;
+  letter-spacing: 0.12em;
+}
+
+.completion-note {
+  color: #e1e6f0;
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  .quest-detail-card,
+  .completion-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quest-detail-card {
+    padding: 26px 22px;
+  }
+}
+
+.completion-form input::placeholder,
+.completion-form textarea::placeholder {
+  color: #b8c4d8;
+  opacity: 1;
+}
+
+.completion-form input[type="submit"].quest-button-primary {
+  width: auto;
+  border: 0;
+  background: #a7f36b;
+  color: #17200f;
+}
+
+.completion-form input[type="submit"].quest-button-primary:hover {
+  background: #c0ff8c;
+}
+
+.quest-button-secondary,
+.quest-button-danger {
+  transition: transform 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.quest-button-secondary:hover {
+  transform: translateY(-2px);
+  background: #3b4962;
+  color: #fff;
+  box-shadow: 0 8px 18px #080c1470;
+}
+
+.quest-button-danger:hover {
+  transform: translateY(-2px);
+  background: #713947;
+  color: #fff;
+  box-shadow: 0 8px 18px #080c1470;
+}
+
+.quest-button-secondary:active,
+.quest-button-danger:active {
+  transform: translateY(0);
+}

@@ -1,2 +1,30 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<main class="home-page">
+  <section class="home-hero">
+    <div class="home-copy">
+      <p class="home-kicker">YOUR DEVELOPER ADVENTURE STARTS HERE</p>
+      <h1>Level up your life,<br><span>one quest at a time.</span></h1>
+      <p class="home-intro">
+        Pick a small coding challenge, build a skill, and earn a win today.
+      </p>
+
+      <%= link_to "Find your next quest →", quests_path, class: "home-button" %>
+    </div>
+
+    <article class="featured-quest">
+      <div class="featured-top">
+        <span>✦ FEATURED QUEST</span>
+        <span class="featured-difficulty">EASY</span>
+      </div>
+      <p class="featured-category">CODING · 30 MIN</p>
+      <h2>Build a tiny command-line tool</h2>
+      <p>Make something small that solves a real little problem.</p>
+      <%= link_to "View quest →", quests_path, class: "featured-link" %>
+    </article>
+  </section>
+
+  <section class="home-bottom">
+    <p>One small mission.</p>
+    <p>One new skill.</p>
+    <p>One more reason to keep building.</p>
+  </section>
+</main>

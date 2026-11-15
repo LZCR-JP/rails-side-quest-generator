@@ -1,1 +1,124 @@
 // Specific CSS for your home-page
+.home-page {
+  width: 90%;
+  max-width: 1120px;
+  margin: 70px auto;
+  color: #f6f7fb;
+}
+
+.home-hero {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  align-items: center;
+  gap: 50px;
+  padding: 64px;
+  border: 1px solid #344052;
+  border-radius: 28px;
+  background: radial-gradient(ellipse at 80% 10%, #29385b, #171d2b 62%);
+}
+
+.home-kicker,
+.featured-top,
+.featured-category {
+  color: #a7f36b;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.home-copy h1 {
+  margin: 14px 0;
+  font-size: 4rem;
+  line-height: 1.02;
+}
+
+.home-copy h1 span {
+  color: #a7f36b;
+}
+
+.home-intro {
+  max-width: 440px;
+  margin-bottom: 30px;
+  color: #bac4d6;
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+
+.home-button {
+  display: inline-block;
+  padding: 15px 22px;
+  border-radius: 12px;
+  background: #a7f36b;
+  color: #17200f;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.home-button:hover {
+  background: #c0ff8c;
+  color: #17200f;
+  transform: translateY(-2px);
+}
+
+.featured-quest {
+  padding: 26px;
+  border: 1px solid #46516a;
+  border-radius: 20px;
+  background: #202839;
+  box-shadow: 0 20px 50px #090d16aa;
+}
+
+.featured-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.featured-difficulty {
+  color: #ffd166;
+}
+
+.featured-category {
+  margin-top: 34px;
+  color: #9eabc2;
+}
+
+.featured-quest h2 {
+  font-size: 1.7rem;
+}
+
+.featured-quest > p:not(.featured-category) {
+  color: #bac4d6;
+  line-height: 1.5;
+}
+
+.featured-link {
+  color: #a7f36b;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.home-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 26px;
+  color: #9eabc2;
+}
+
+@media (max-width: 760px) {
+  .home-page {
+    margin: 28px auto;
+  }
+
+  .home-hero {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 32px 24px;
+  }
+
+  .home-copy h1 {
+    font-size: 3rem;
+  }
+}
