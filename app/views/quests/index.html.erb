@@ -1,20 +1,38 @@
-<div class="container mt-3">
-    <h1>All quests</h1>
+<main class="quest-page">
+  <section class="quest-hero">
+    <p class="eyebrow">YOUR NEXT LEVEL STARTS HERE</p>
+    <h1>Developer Side Quests</h1>
+    <p>Small missions. Real skills. Pick one and make progress.</p>
 
-    <%= form_with url: generate_quests_path, method: :post do |form| %>
-        <%= form.label :max_time, "How many minutes do you have?" %>
-        <%= form.number_field :max_time, min: 1, required: true %>
-        <%= form.submit "Generate a quest" %>
+    <%= form_with url: generate_quests_path, method: :post, class: "quest-generator" do |form| %>
+      <div>
+        <%= form.label :max_time, "Time available (minutes)" %>
+        <%= form.number_field :max_time, min: 1, required: true, placeholder: "e.g. 30" %>
+      </div>
+      <%= form.submit "Generate a quest →" %>
     <% end %>
+  </section>
 
-    <% @quests.each do |quest| %>
-    <article>
-        <h2><%= quest.title %></h2>
-        <p> <%= quest.description %></p>
-        <p>Category: <%= quest.category %></p>
-        <p>Difficulty: <%= quest.difficulty %></p>
-        <p>Time: <%= quest.duration_minutes %> minutes</p>
-    </article>
-    <% end %>
+  <section class="quest-section">
+    <h2>Available quests</h2>
+    <div class="quest-grid">
+      <% @quests.each do |quest| %>
+        <article class="quest-card">
+          <div class="quest-card-top">
+            <span class="quest-category"><%= quest.category %></span>
+            <span class="quest-difficulty difficulty-<%= quest.difficulty %>">
+              <%= quest.difficulty %>
+            </span>
+          </div>
 
-</div>
+          <h3><%= link_to quest.title, quest_path(quest) %></h3>
+          <p><%= quest.description %></p>
+          <div class="quest-card-footer">
+            <span>◷ <%= quest.duration_minutes %> min</span>
+            <%= link_to "View quest →", quest_path(quest), class: "quest-link" %>
+          </div>
+        </article>
+      <% end %>
+    </div>
+  </section>
+</main>

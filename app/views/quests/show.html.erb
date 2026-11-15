@@ -9,16 +9,16 @@
     <%= link_to "Delete this quest", quest_path(@quest), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger"  %>
     <%= link_to "Edit this quest", edit_quest_path(@quest), class: "btn btn-info" %>
 
-    <h2>Mark this quest complete</h2>
+    <h2>🌟 Quest Completion</h2>
 
     <%= simple_form_for [@quest, Completion.new],
                     url: quest_completions_path(@quest) do |f| %>
-      <%= f.input :rating, collection: 1..5, prompt: "Choose a rating" %>
-      <%= f.input :note, label: "How did it go?" %>
-      <%= f.button :submit, "Mark complete", class: "btn btn-success" %>
+      <%= f.input :rating, collection: 1..5, label: "🎯 How Challenging Was It?", prompt: "Choose a rating" %>
+      <%= f.input :note, label: "💡 What Did You Learn?" %>
+      <%= f.button :submit, "🏆 Claim Victory", class: "btn btn-success" %>
     <% end %>
 
-    <h2>Completion history</h2>
+    <h2>⭐ Achievement History</h2>
 
     <% @quest.completions.order(completed_at: :desc).each do |completion| %>
         <article>

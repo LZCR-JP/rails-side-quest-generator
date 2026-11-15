@@ -1,0 +1,132 @@
+body {
+  margin: 0;
+  background: #10131c;
+  color: #f4f6fb;
+  font-family: system-ui, sans-serif;
+}
+
+.quest-page {
+  width: 92%;
+  max-width: 1100px;
+  margin: 48px auto;
+}
+
+.quest-hero {
+  padding: 48px;
+  border: 1px solid #30384a;
+  border-radius: 24px;
+  background: radial-gradient(circle at top right, #29345c, #191e2b 55%);
+}
+
+.eyebrow {
+  color: #9daeff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.quest-hero h1 {
+  margin: 8px 0;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+}
+
+.quest-hero > p:not(.eyebrow) {
+  color: #b8c0d2;
+}
+
+.quest-generator {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.quest-generator label {
+  display: block;
+  margin-bottom: 7px;
+  color: #cbd2e1;
+}
+
+.quest-generator input[type="number"] {
+  box-sizing: border-box;
+  width: 190px;
+  padding: 12px;
+  border: 1px solid #454e64;
+  border-radius: 10px;
+  background: #111622;
+  color: white;
+}
+
+.quest-generator input[type="submit"] {
+  padding: 13px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: #a7f36b;
+  color: #15200d;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.quest-section {
+  margin-top: 42px;
+}
+
+.quest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.quest-card {
+  padding: 22px;
+  border: 1px solid #30384a;
+  border-radius: 18px;
+  background: #191e2b;
+}
+
+.quest-card-top,
+.quest-card-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.quest-category,
+.quest-difficulty {
+  color: #b8c0d2;
+  font-size: 0.82rem;
+}
+
+.difficulty-easy { color: #a7f36b; }
+.difficulty-medium { color: #ffd166; }
+.difficulty-hard { color: #ff8292; }
+
+.quest-card h3 a,
+.quest-link {
+  color: #f4f6fb;
+  text-decoration: none;
+}
+
+.quest-card h3 a:hover,
+.quest-link:hover {
+  color: #a7f36b;
+}
+
+.quest-card p {
+  min-height: 48px;
+  color: #b8c0d2;
+  line-height: 1.5;
+}
+
+.quest-card-footer {
+  margin-top: 20px;
+  color: #9da6ba;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .quest-hero {
+    padding: 28px 22px;
+  }
+}
