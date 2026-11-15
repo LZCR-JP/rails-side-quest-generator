@@ -1,7 +1,7 @@
-puts "Cleaning database..."
-Quest.destroy_all
+require "json"
 
-puts "Creating Quests..."
+puts "Creating sample quests..."
+
 [
   {
     title: "Build a tiny command-line tool",
@@ -44,4 +44,24 @@ puts "Creating Quests..."
   end
 end
 
-puts "Finished! Created #{Quest.count} quests."
+puts "Importing MBPP quests..."
+
+file = Rails.root.join("db", "mbpp.jsonl")
+
+unless File.exist?(file)
+  raise "Could not find db/mbpp.jsonl. Download the MBPP dataset file first."
+end
+
+File.foreach(file) do |line|
+  task = JSON.parse(line)
+  title = "Python challenge #{task["task_id"]}: #{task["text"].truncate(55)}"
+
+  Quest.find_or_create_by!(title: title) do |quest|
+    quest.description = task["text"]
+    quest.category = "Python"
+    quest.difficulty = "easy"
+    quest.duration_minutes = 15
+  end
+end
+
+puts "Finished! There are now #{Quest.count} quests."
