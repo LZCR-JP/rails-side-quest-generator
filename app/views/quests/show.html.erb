@@ -7,5 +7,28 @@
 
     <%= link_to "Back to all quests", quests_path, class: "btn btn-primary" %>
     <%= link_to "Delete this quest", quest_path(@quest), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger"  %>
-    <%= link_to "Edit this quest", edit_quest_path(@quest), class: "btn btn-success" %>
+    <%= link_to "Edit this quest", edit_quest_path(@quest), class: "btn btn-info" %>
+
+    <h2>Mark this quest complete</h2>
+
+    <%= simple_form_for [@quest, Completion.new],
+                    url: quest_completions_path(@quest) do |f| %>
+      <%= f.input :rating, collection: 1..5, prompt: "Choose a rating" %>
+      <%= f.input :note, label: "How did it go?" %>
+      <%= f.button :submit, "Mark complete", class: "btn btn-success" %>
+    <% end %>
+
+    <h2>Completion history</h2>
+
+    <% @quest.completions.order(completed_at: :desc).each do |completion| %>
+        <article>
+          <p>Completed: <%= completion.completed_at.strftime("%B %-d, %Y") %></p>
+          <% if completion.rating.present? %>
+            <p>Rating: <%= completion.rating %>/5</p>
+          <% end %>
+          <% if completion.note.present? %>
+            <p><%= completion.note.capitalize %></p>
+          <% end %>
+        </article>
+    <% end %>
 </div>

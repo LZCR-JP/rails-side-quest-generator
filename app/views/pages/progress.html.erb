@@ -1,0 +1,33 @@
+<div class="container mt-3">
+    <h1>Your progress</h1>
+
+<p>Quests completed: <%= @completed_count %></p>
+
+<p>
+  Average rating:
+  <%= @average_rating ? "#{@average_rating}/5" : "No ratings yet" %>
+</p>
+
+<h2>Recent completions</h2>
+
+<% if @recent_completions.any? %>
+  <% @recent_completions.each do |completion| %>
+    <article>
+      <h3><%= link_to completion.quest.title, quest_path(completion.quest) %></h3>
+      <p>
+        Completed:
+        <%= completion.completed_at&.strftime("%B %d, %Y") || "Date not recorded" %>
+      </p>
+      <% if completion.rating.present? %>
+        <p>Rating: <%= completion.rating %>/5</p>
+      <% end %>
+      <% if completion.note.present? %>
+        <p><%= completion.note.capitalize %></p>
+      <% end %>
+    </article>
+  <% end %>
+<% else %>
+  <p>No completed quests yet. Finish a quest to see it here!</p>
+<% end %>
+<%= link_to "Back to Home", root_path %>
+</div>
