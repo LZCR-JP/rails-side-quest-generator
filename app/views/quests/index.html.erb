@@ -1,0 +1,20 @@
+<div class="container mt-3">
+    <h1>All quests</h1>
+
+    <%= form_with url: generate_quest_path, method: :post do |form| %>
+        <%= form.label :max_time, "How many minutes do you have?" %>
+        <%= form.number_field :max_time, min: 1, required: true %>
+        <%= form.submit "Generate a quest" %>
+    <% end %>
+
+    <% @quests.each do |quest| %>
+    <article>
+        <h2><%= quest.title %></h2>
+        <p> <%= quest.description %></p>
+        <p>Category: <%= quest.category %></p>
+        <p>Difficulty: <%= quest.difficulty %></p>
+        <p>Time: <%= quest.duration_minutes %> minutes</p>
+    </article>
+    <% end %>
+
+</div>

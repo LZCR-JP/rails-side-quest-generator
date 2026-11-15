@@ -1,0 +1,8 @@
+<%= simple_form_for @quest do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.input :category %>
+  <%= f.input :difficulty, collection: %w[easy medium hard] %>
+  <%= f.input :duration_minutes, label: "Time (minutes)" %>
+  <%= f.button :submit %>
+<% end %>

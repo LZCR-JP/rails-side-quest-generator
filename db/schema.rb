@@ -10,8 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 0) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_15_065334) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
+  create_table "completions", force: :cascade do |t|
+    t.datetime "completed_at"
+    t.text "note"
+    t.integer "rating"
+    t.bigint "quest_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quest_id"], name: "index_completions_on_quest_id"
+  end
+
+  create_table "quests", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "category"
+    t.string "difficulty"
+    t.integer "duration_minutes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "completions", "quests"
 end
